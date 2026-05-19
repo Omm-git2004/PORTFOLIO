@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #030712;
+  color: white;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── Keyframes ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-20px); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes orb-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%       { transform: scale(1.15); opacity: 1; }
+}
+@keyframes timeline-grow {
+  from { height: 0; }
+  to   { height: 100%; }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(139,92,246,0.4), 0 0 30px rgba(59,130,246,0.2); }
+  50%       { box-shadow: 0 0 30px rgba(139,92,246,0.7), 0 0 60px rgba(59,130,246,0.4); }
+}
+@keyframes rotate-border {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes particle-float {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
+  33%  { transform: translateY(-30px) translateX(15px) scale(1.2); opacity: 1; }
+  66%  { transform: translateY(-15px) translateX(-10px) scale(0.9); opacity: 0.5; }
+  100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
+}
+
+/* ── Utility ── */
+.animate-fadeInUp    { animation: fadeInUp  0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+.animate-fadeInLeft  { animation: fadeInLeft 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+.animate-fadeInRight { animation: fadeInRight 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+.animate-float       { animation: float 5s ease-in-out infinite; }
+.animate-glow-pulse  { animation: glow-pulse 3s ease-in-out infinite; }
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+
+/* ── Gradient Text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+.gradient-text-2 {
+  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Hero Background ── */
+.hero-bg {
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(59,130,246,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(139,92,246,0.15) 0%, transparent 55%),
+    radial-gradient(ellipse at 55% 85%, rgba(244,114,182,0.08) 0%, transparent 50%),
+    #030712;
+}
+
+/* ── Glass Card ── */
+.glass-card {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+.glass-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(139,92,246,0.2),
+              0 0 0 1px rgba(139,92,246,0.15);
+  border-color: rgba(139,92,246,0.3);
+}
+
+/* ── Neon Button ── */
+.btn-neon {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  transition: all 0.3s ease;
+}
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-neon:hover::before { opacity: 1; }
+.btn-neon:hover {
+  box-shadow: 0 0 30px rgba(139,92,246,0.5), 0 0 60px rgba(59,130,246,0.3);
+  transform: translateY(-2px);
+}
+.btn-neon span { position: relative; z-index: 1; }
+
+/* ── Skill Card ── */
+.skill-card {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148,163,184,0.08);
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+  overflow: hidden;
+}
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.skill-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  border-color: rgba(139,92,246,0.4);
+  box-shadow: 0 12px 30px rgba(139,92,246,0.2), 0 0 0 1px rgba(139,92,246,0.1);
+}
+.skill-card:hover::before { opacity: 1; }
+
+/* ── Cursor Blink ── */
+.cursor-blink::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: #a78bfa;
+  margin-left: 2px;
+}
+
+/* ── Section Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(45px);
+  transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+              transform 0.75s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Timeline ── */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #ec4899);
+  transform: translateX(-50%);
+  height: 0;
+  transition: height 1.5s ease;
+}
+.timeline-line.visible { height: 100%; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #030712; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+  border-radius: 3px;
+}
+
+/* ── Section divider ── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(139,92,246,0.4), transparent);
+}
